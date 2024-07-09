@@ -2,7 +2,7 @@
 // Use of this source is governed by a BSD-style license that can
 // be found in the LICENSE file.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import Flutter
 #elseif os(macOS)
 import Cocoa
@@ -20,7 +20,7 @@ public class SwiftConnectivityPlusPlugin: NSObject, FlutterPlugin, FlutterStream
   }
 
   public static func register(with registrar: FlutterPluginRegistrar) {
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     let binaryMessenger = registrar.messenger()
     #elseif os(macOS)
     let binaryMessenger = registrar.messenger
@@ -69,7 +69,7 @@ public class SwiftConnectivityPlusPlugin: NSObject, FlutterPlugin, FlutterStream
       return "none"
     }
   }
-  
+
   private func statusFrom(connectivityTypes: [ConnectivityType]) -> [String] {
     return connectivityTypes.map {
       self.statusFrom(connectivityType: $0)
